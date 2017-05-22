@@ -59,3 +59,23 @@ Dashboard/journal#master
 Journal#master
 
 Strain#Master
+
+## API Route Structure
+*default base route for api is /api (to keep separate from angular routes)*
+
+- Get: `/users/login/:id` - Gets all user data and performs authentication
+
+- Post `/users/new` - post a new user
+
+- Get: `/journals/user/:user_id` - Gets all user journals for a user
+
+- Get: `/journals/:journal_id` - Gets Journals by journal id
+
+- Post: `/journals/new` - post a new journal
+
+- Patch `/journals/:journal_id` - Edit a journal information
+
+- Get `/strain/:id` - get strain data by strain id
+
+- Post `/strain/new` - post a new strain
+
