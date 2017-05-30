@@ -24,7 +24,23 @@ router.post('/users/new', (req, res) => {
     profileUrl
   }
 
-  res.send(newUser)
+  knex('users')
+  .where('email', req.body.email)
+  .then((dataCheck) => {
+    //Check to see if email already exists
+    if(dataCheck.length > 0){
+      res.send('An account using that email already exists')
+    }else{
+      console.log('Creating new account');
+
+      knex('users')
+      .insert(newUser, "*")
+      .then((userData) => {
+        res.send(userData[0])
+      })
+    }
+  })
+
 })
 
 module.exports = router;
