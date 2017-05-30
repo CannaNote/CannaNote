@@ -8,10 +8,23 @@ const knex = require('../knex');
 const BodyParser = require('body-parser');
 router.use(BodyParser.json());
 
+const bcrypt = require('bcrypt');
+
 //User Routes
 
 router.post('/users/new', (req, res) => {
-  res.send(req.body.name);
+  var {name, email, password, profileUrl} = req.body;
+
+  var passwordHash = bcrypt.hashSync(password, 10)
+
+  var newUser = {
+    name,
+    email,
+    password: passwordHash,
+    profileUrl
+  }
+
+  res.send(newUser)
 })
 
 module.exports = router;
